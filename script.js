@@ -19,9 +19,13 @@ const Gameboard = (() => {
         render();
     };
 
+    //Accessory method to retrieve gameboard indirectly and prevent overwriting
+    const getGameBoard = () => gameboard;
+
 	return {
 		render,
         update,
+        getGameBoard,
 	};
 
 })();
@@ -51,8 +55,13 @@ const Game = (() => {
 
     const handleClick = (event) => {
         let index = parseInt(event.target.id.split("-")[1]); //Removes square- from id
-        Gameboard.update(index, players[currentPlayerIndex].mark);
 
+        //Prevents overwriting square if already filled
+        if (Gameboard.getGameBoard()[index] !== "") {
+            return;
+        }
+            
+        Gameboard.update(index, players[currentPlayerIndex].mark);
         currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
     };
 

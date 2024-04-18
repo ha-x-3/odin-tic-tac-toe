@@ -119,8 +119,6 @@ const Game = (() => {
         }
         Gameboard.render();
         document.querySelector("#message").innerHTML = "";
-        document.querySelector("#player1").value = "";
-        document.querySelector('#player2').value = '';
         gameOver = false;
     };
 
